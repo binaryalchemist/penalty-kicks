@@ -3,7 +3,7 @@ import ReactDom from "react-dom/client";
 import App from "./App";
 
 
-const hostElement = document.getElementById("pk-game") as HTMLElement;
+const hostElement = document.getElementById("zee-game") as HTMLElement;
 const root = ReactDom.createRoot(hostElement);
 
 root.render(
