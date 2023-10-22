@@ -40,7 +40,7 @@ export class Sprite {
     this.isItOver = false;
   }
 
-  public update(onNearEnd: () => void) {
+  public update() {
     this.tickCount += 1;
 
     if (this.tickCount > this.ticksPerFrame) {
@@ -54,13 +54,14 @@ export class Sprite {
       }
       else if (this.frameIndex == this.numberOfFrames - 2) {
         this.frameIndex += 1;
-        onNearEnd();
       }
       else if (this.frameIndex < this.numberOfFrames - 1) {
         this.frameIndex += 1;
       }
       else {
-        // frameIndex = 0; // don't repeat the animation
+        console.log("it's over")
+
+        // https://css-tricks.com/using-requestanimationframe-with-react-hooks/
         this.isItOver = true;
       }
     }
@@ -112,14 +113,12 @@ export default ({ gameState, playerScore, ballPosition, onAnimationComplete }: G
     function gameLoop() {
       if (isItOver == false) {
         requestAnimationFrame(gameLoop);
-
-        isItOver = player.update(() => {
-          // start moving the ball
-          moveBall();
-          // make the goal keeper jump
-          keeperJump(x3);
-        });
+        isItOver = player.update();
         player.render();
+      } else {
+        moveBall();
+        // make the goal keeper jump
+        keeperJump(x3);
       }
     }
 

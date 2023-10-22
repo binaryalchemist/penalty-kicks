@@ -17,16 +17,15 @@ export default () => {
   const [ballPosition, setBallPosition] = useState(readyBallPosition);
 
   function onAnimationComplete(total: number, scored: boolean, attemptNumber: number) {
-    let results = new Array<boolean>(MAX_KICKS_PER_PLAYER).fill(false)
-    let attempts = 0;
-    let newTotal = 0;
-    let newScore = { total: newTotal, attemptNumber: attempts, chanceResults: results };
+    let newScore = { total: 0, attemptNumber: 0, chanceResults: new Array<boolean>(MAX_KICKS_PER_PLAYER).fill(false) };
     
     if (attemptNumber < MAX_KICKS_PER_PLAYER) {
-      results = playerScore.chanceResults.slice();
+      let results = playerScore.chanceResults.slice();
       results[attemptNumber] = scored;
       newScore = { total, attemptNumber, chanceResults: results };
     }
+
+    console.log(`${Date.now()} total ${total} where last attempt was ${scored ? "scored" : "missed"} for attempt #${attemptNumber}`);
 
     setPlayerScore(newScore);
     setBallPosition(readyBallPosition);

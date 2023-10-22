@@ -11,7 +11,7 @@ export default ({ score }: ScoreBoardProps) => {
   return (
     <>
       <ul id="score-board">
-        {score.chanceResults.map((scored, idx) => <li id={chanceIdPrefix + idx} key={chanceIdPrefix + idx} className={ scored ? "scored" : "" }><img src="img/zee-ball.png" width="32" height="32" /></li>)}
+        {score.chanceResults.map((scored, idx) => <li id={chanceIdPrefix + idx} key={chanceIdPrefix + idx} className={scored ? "scored" : ""}><img src="img/zee-ball.png" width="32" height="32" /></li>)}
       </ul>
     </>
   );
